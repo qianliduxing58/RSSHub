@@ -43,7 +43,14 @@ export default {
                     const description = load(convert_data, {
                         decodeEntities: false,
                     })('body > table > tbody > tr > td.oblog_t_2 > div > table > tbody > tr:nth-child(2) > td');
-                    const pubInfo = description.find('span span.oblog_text').text().split('发布于');
+                   description.find('img').each((_, ele) => {
+    const img = description(ele);
+    img.attr('alt', img.attr('alt') || '喷嚏图卦图片');
+    img.attr('title', img.attr('title') || '喷嚏图卦图片');
+    img.attr('referrerpolicy', 'no-referrer');
+});
+
+const pubInfo = description.find('span span.oblog_text').text().split('发布于');
                     description.find('table, .adsbygoogle').remove();
 
                     // remove header
